@@ -79,7 +79,7 @@ Market snapshots are generated with an interval of 4h, check the last snapshot t
 
 <br>
 
-**`Available endpoints`**  
+### Endpoints
 To integrate with reactioon network we have some private endpoints to any machine send/get data inside of reactioon, the whole group of endpoints enable full integration.
 
 **Important:**  
@@ -89,7 +89,7 @@ To integrate with reactioon network we have some private endpoints to any machin
 (1): All fields sent on `POST` is required to each endpoint.  
 (2): To prevent high cost with usage, save the return of an request in your environment and parse it to show  later, in most of case the data won't change in minutes. So, Create your own copy of the data, and if time requested is lower than 3 min load the data from your enviroment.
 
-**`(Accounts)`**  
+#### Accounts  
 All endpoints for accounts is the way to interact with user account. Below have an list of endpoints with their fields.
 
 `(POST)` `{@base_url}`/account/keys/add  
@@ -109,7 +109,7 @@ All endpoints for accounts is the way to interact with user account. Below have 
 | -------- | ------- | ------- |
 | key_id   | numeric | Id of key generated from reactioon.
 
-**`(Snapshots)`**  
+#### Snapshots  
 All endpoints for snapshots provide an way to interact with snapshots of user. Below have an list of endpoints with their fields.
 
 `(POST)` `{@base_url}`/snapshots/cost  
@@ -149,7 +149,7 @@ All endpoints for snapshots provide an way to interact with snapshots of user. B
 | exchange | string  | Exchanges available (list availables)
 | currency | string  | Currency available (list availables).
 
-**`(Watchlist)`**  
+#### Watchlist  
 All endpoints for watchlist provied an way to interact with assets added on user account to watch. Below have an list of endpoints with their fields.
 
 `(GET)` `{@base_url}`/watchlist/assets  
@@ -215,7 +215,7 @@ Note: no arguments, on this request, there are an POST request without any argum
 | days       | int      | Number of days. (max: 30)
 | dateStart  | datetime | Date and time. (ex: 2023-05-26 22:30:00)
 
-**`Bots`**  
+#### Bots  
 All endpoints here provide an way to interact with bots. Below have an list of endpoints with their fields.
 
 `(GET)` `{@base_url}`/bots/spot/all  
