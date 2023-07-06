@@ -162,7 +162,7 @@ All endpoints for snapshots provide an way to interact with snapshots of user. B
 | exchange | string  | Exchanges available (list availables)
 | currency | string  | Currency available (list availables).
 
-#### Watchlist  
+### Watchlist  
 All endpoints for watchlist provied an way to interact with assets added on user account to watch. Below have an list of endpoints with their fields.
 
 #### - Get all assets added on watchlist
@@ -240,7 +240,7 @@ Note: no arguments, on this request, there are an POST request without any argum
 | days       | int      | Number of days. (max: 30)
 | dateStart  | datetime | Date and time. (ex: 2023-05-26 22:30:00)
 
-#### Bots  
+### Bots  
 All endpoints here provide an way to interact with bots. Below have an list of endpoints with their fields.
 
 **Important:**  
