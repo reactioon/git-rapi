@@ -27,8 +27,6 @@ The communication flow in general terms is simple, an authenticated and signed r
 
 The authorization is an signature with public and private key that needs to be sent with header from the allowed host.
 
-<br>
-
 ## Authorization
 
 Reactioon Network uses HTTP Headers to identify the user making the request, see the available headers below.
@@ -41,19 +39,13 @@ The header signature must be used with value of an generated HMAC signature of t
 
 **Note:** If you don't have an public and private key of reactioon network, you can create inside of your account.
 
-<br>
-
 ## Response
 All responses from reactioon network is in JSON format. If the return is not an JSON, the request is with error.
-
-<br>
 
 ## Security
 * Reactioon use an combination of whitelist for hosts and signature keys to validate the request integrity.
 * The data is sent over HTTPS, this will encrypt any data sent over network.
 * The data sent over reactioon network needs an signature, this will prevent data change by third parties.
-
-<br>
 
 ## Context & Endpoints
 
@@ -77,8 +69,6 @@ The bots run over a distributed network, this mean that all changes needs to be 
 * `Snapshots`  
 Market snapshots are generated with an interval of 4h, check the last snapshot to see the time of the next snapshot.
 
-<br>
-
 ### Endpoints
 To integrate with reactioon network we have some private endpoints to any machine send/get data inside of reactioon, the whole group of endpoints enable full integration.
 
@@ -90,8 +80,6 @@ To integrate with reactioon network we have some private endpoints to any machin
 (2): To prevent high cost with usage, save the return of an request in your environment and parse it to show  later, in most of case the data won't change in minutes. So, Create your own copy of the data, and if time requested is lower than 3 min load the data from your enviroment.
 
 To full list of endpoints is available inside of file `endpoints.md`.
-
-<br>
 
 ## Libraries
 Reactioon has some libraries to help developers when creating solutions, see the available languages below:
@@ -180,8 +168,6 @@ var_dump($requestReturn);
 
 You can get more details about the library for PHP inside of their repository, here.
 
-<br>
-
 ## Postman
 
 To speed up the process of learning about the RAPI, you can download the postman collection and install it on your machine. Put your key & secret in variables, and it's ready.
@@ -190,8 +176,6 @@ To speed up the process of learning about the RAPI, you can download the postman
 * Download RAPI Collection
 
 With more than 40 endpoints on collection about Reactioon Network, you can explore anything. See some examples of applications below.
-
-<br>
 
 ## Use cases
 
@@ -241,7 +225,6 @@ We don't have plans to have an direct support right now, we are an small team. W
 
 ### Conclusion
 There are many possibilities to do with reactioon.network, feel free to create your own solution and let's build the market!
-
 
 <br>
 

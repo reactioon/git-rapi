@@ -1,0 +1,2858 @@
+{
+	"info": {
+		"_postman_id": "c42d887e-9718-4efc-bd1f-c6da6f6e130e",
+		"name": "rgo-rapi (prod)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25930945"
+	},
+	"item": [
+		{
+			"name": "about rapi",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{host}}:{{port}}",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Basic send data",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// ",
+							"// Request POST (SIGNED)",
+							"// ",
+							"// To make an signed document some vars needs to be excluded from your signature.",
+							"// @vars-remove: ",
+							"// _signature",
+							"//",
+							"",
+							"content_signature = \"\"",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "teste",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Basic Request Data",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// ",
+							"// Request GET (SIGNED)",
+							"// ",
+							"// To make an signed request the field '_signature' needs to be sent inside of URL.",
+							"// @vars-required: ",
+							"// _signature",
+							"//",
+							"",
+							"content_signature = \"\"",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List all bots spot",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// ",
+							"// Request POST (SIGNED)",
+							"// ",
+							"// To make an signed document some vars needs to be excluded from your signature.",
+							"// @vars-remove: ",
+							"// _signature",
+							"//",
+							"",
+							"content_signature = \"\"",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/all",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot set action (buy/sell/cancel)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"unique_name=\" + request.data.unique_name + \"&action=\" + request.data.action + \"&value=\" + request.data.value",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "unique_name",
+							"value": "hMbQ1ioY2RKtX",
+							"type": "text"
+						},
+						{
+							"key": "action",
+							"value": "buy",
+							"type": "text"
+						},
+						{
+							"key": "value",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/action/set",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"action",
+						"set"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot disable (buy/sell/cancel)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"unique_name=\" + request.data.unique_name",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "unique_name",
+							"value": "hMbQ1ioY2RKtX",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/workprice/disable",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"workprice",
+						"disable"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot enable (buy/sell/cancel)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"unique_name=\" + request.data.unique_name",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "unique_name",
+							"value": "hMbQ1ioY2RKtX",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/buy/enable",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"buy",
+						"enable"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot edit action buy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"unique_name=\" + request.data.unique_name + \"&limit=\" + request.data.limit + \"&position=\" + request.data.position",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "unique_name",
+							"value": "hMbQ1ioY2RKtX",
+							"type": "text"
+						},
+						{
+							"key": "limit",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "position",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/buy/set",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"buy",
+						"set"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot edit action sell",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"unique_name=\" + request.data.unique_name + \"&limit=\" + request.data.limit + \"&position=\" + request.data.position + \"&profit=\" + request.data.profit",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "unique_name",
+							"value": "hMbQ1ioY2RKtX",
+							"type": "text"
+						},
+						{
+							"key": "limit",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "position",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "profit",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/sell/set",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"sell",
+						"set"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot edit action cancel",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"unique_name=\" + request.data.unique_name + \"&buy=\" + request.data.buy + \"&sell=\" + request.data.sell",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "unique_name",
+							"value": "hMbQ1ioY2RKtX",
+							"type": "text"
+						},
+						{
+							"key": "buy",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "sell",
+							"value": "5",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/cancel/set",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"cancel",
+						"set"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot edit action stoploss",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"unique_name=\" + request.data.unique_name + \"&stoploss=\" + request.data.stoploss",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "unique_name",
+							"value": "hMbQ1ioY2RKtX",
+							"type": "text"
+						},
+						{
+							"key": "stoploss",
+							"value": "10",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/stoploss/set",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"stoploss",
+						"set"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot edit action workprice",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"unique_name=\" + request.data.unique_name + \"&buy_start=\" + request.data.buy_start + \"&buy_end=\" + request.data.buy_end + \"&sell_start=\" + request.data.sell_start + \"&sell_end=\" + request.data.sell_end",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "unique_name",
+							"value": "hMbQ1ioY2RKtX",
+							"type": "text"
+						},
+						{
+							"key": "buy_start",
+							"value": "10000",
+							"type": "text"
+						},
+						{
+							"key": "buy_end",
+							"value": "12000",
+							"type": "text"
+						},
+						{
+							"key": "sell_start",
+							"value": "13000",
+							"type": "text"
+						},
+						{
+							"key": "sell_end",
+							"value": "15000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/workprice/set",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"workprice",
+						"set"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot update upload",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"unique_name=\" + request.data.unique_name",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "unique_name",
+							"value": "hMbQ1ioY2RKtX",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/upload/update",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"upload",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot calculate cost",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"name=\" + request.data.name + \"&days=\" + request.data.days + \"&apiKey=\" + request.data.apiKey + \"&amount=\" + request.data.amount + \"&symbol=\" + request.data.symbol",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "bot-calculated",
+							"type": "text"
+						},
+						{
+							"key": "days",
+							"value": "60",
+							"type": "text"
+						},
+						{
+							"key": "apiKey",
+							"value": "20200128214612",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "symbol",
+							"value": "BTC-USDT",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/cost",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"cost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot trade last",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"unique_name=\" + request.data.unique_name + \"&symbol=\" + request.data.symbol",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "unique_name",
+							"value": "FnW1qOvEIHJUb",
+							"type": "text"
+						},
+						{
+							"key": "symbol",
+							"value": "BTCUSD",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/stats/trade/last",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"stats",
+						"trade",
+						"last"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot create",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"name=\" + request.data.name + \"&mode=\" + request.data.mode + \"&profit=\" + request.data.profit;",
+							"content_signature = content_signature + \"&risk_margin=\" + request.data.risk_margin + \"&risk_days=\" + request.data.risk_days; ",
+							"content_signature = content_signature + \"&spend_buy=\" + request.data.spend_buy + \"&spend_sell=\" + request.data.spend_sell;",
+							"content_signature = content_signature + \"&limits_buy=\" + request.data.limits_buy + \"&limits_sell=\" + request.data.limits_sell;",
+							"content_signature = content_signature + \"&cancel_buy=\" + request.data.cancel_buy + \"&cancel_sell=\" + request.data.cancel_sell;",
+							"content_signature = content_signature + \"&wait=\" + request.data.wait + \"&symbol=\" + request.data.symbol;",
+							"content_signature = content_signature + \"&api_key=\" + request.data.api_key + \"&balance=\" + request.data.balance;",
+							"content_signature = content_signature + \"&volatility=\" + request.data.volatility + \"&days=\" + request.data.days;",
+							"content_signature = content_signature + \"&symbol_lot=\" + request.data.symbol_lot + \"&symbol_minimal=\" + request.data.symbol_minimal + \"&symbol_pair=\" + request.data.symbol_pair;",
+							"content_signature = content_signature + \"&book_position_buy=\" + request.data.book_position_buy + \"&book_position_sell=\" + request.data.book_position_sell;",
+							"content_signature = content_signature + \"&borrow_open=\" + request.data.borrow_open + \"&_confirmed=\" + request.data._confirmed;",
+							"",
+							"console.log(content_signature)",
+							"",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "teste-1234",
+							"type": "text"
+						},
+						{
+							"key": "mode",
+							"value": "tendence",
+							"type": "text"
+						},
+						{
+							"key": "profit",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "risk_margin",
+							"value": "25",
+							"type": "text"
+						},
+						{
+							"key": "risk_days",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "spend_buy",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "spend_sell",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "limits_buy",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "limits_sell",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "cancel_buy",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "cancel_sell",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "wait",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "symbol",
+							"value": "BTCUSD",
+							"type": "text"
+						},
+						{
+							"key": "api_key",
+							"value": "20180926191931",
+							"type": "text"
+						},
+						{
+							"key": "balance",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "volatility",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "days",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "symbol_lot",
+							"value": "0.00001",
+							"type": "text"
+						},
+						{
+							"key": "symbol_minimal",
+							"value": "0.00001",
+							"type": "text"
+						},
+						{
+							"key": "symbol_pair",
+							"value": "USD",
+							"type": "text"
+						},
+						{
+							"key": "book_position_buy",
+							"value": "6",
+							"type": "text"
+						},
+						{
+							"key": "book_position_sell",
+							"value": "6",
+							"type": "text"
+						},
+						{
+							"key": "borrow_open",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "_confirmed",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/create",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot edit",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"unique_name=\" + request.data.unique_name + \"&name=\" + request.data.name + \"&mode=\" + request.data.mode + \"&profit=\" + request.data.profit;",
+							"content_signature = content_signature + \"&risk_margin=\" + request.data.risk_margin + \"&risk_days=\" + request.data.risk_days; ",
+							"content_signature = content_signature + \"&spend_buy=\" + request.data.spend_buy + \"&spend_sell=\" + request.data.spend_sell;",
+							"content_signature = content_signature + \"&limits_buy=\" + request.data.limits_buy + \"&limits_sell=\" + request.data.limits_sell;",
+							"content_signature = content_signature + \"&cancel_buy=\" + request.data.cancel_buy + \"&cancel_sell=\" + request.data.cancel_sell;",
+							"content_signature = content_signature + \"&wait=\" + request.data.wait + \"&symbol=\" + request.data.symbol;",
+							"content_signature = content_signature + \"&api_key=\" + request.data.api_key + \"&balance=\" + request.data.balance;",
+							"content_signature = content_signature + \"&volatility=\" + request.data.volatility + \"&days=\" + request.data.days;",
+							"content_signature = content_signature + \"&symbol_lot=\" + request.data.symbol_lot + \"&symbol_minimal=\" + request.data.symbol_minimal + \"&symbol_pair=\" + request.data.symbol_pair;",
+							"content_signature = content_signature + \"&book_position_buy=\" + request.data.book_position_buy + \"&book_position_sell=\" + request.data.book_position_sell;",
+							"content_signature = content_signature + \"&edit=\" + request.data.edit;",
+							"",
+							"console.log(content_signature)",
+							"",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "unique_name",
+							"value": "FnW1qOvEIHJUb",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "teste-1234",
+							"type": "text"
+						},
+						{
+							"key": "mode",
+							"value": "tendence",
+							"type": "text"
+						},
+						{
+							"key": "profit",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "risk_margin",
+							"value": "25",
+							"type": "text"
+						},
+						{
+							"key": "risk_days",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "spend_buy",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "spend_sell",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "limits_buy",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "limits_sell",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "cancel_buy",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "cancel_sell",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "wait",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "symbol",
+							"value": "BTCUSD",
+							"type": "text"
+						},
+						{
+							"key": "api_key",
+							"value": "20180926191931",
+							"type": "text"
+						},
+						{
+							"key": "balance",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "volatility",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "days",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "symbol_lot",
+							"value": "0.00001",
+							"type": "text"
+						},
+						{
+							"key": "symbol_minimal",
+							"value": "0.00001",
+							"type": "text"
+						},
+						{
+							"key": "symbol_pair",
+							"value": "USD",
+							"type": "text"
+						},
+						{
+							"key": "book_position_buy",
+							"value": "6",
+							"type": "text"
+						},
+						{
+							"key": "book_position_sell",
+							"value": "6",
+							"type": "text"
+						},
+						{
+							"key": "edit",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/edit",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot delete",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"unique_name=\" + request.data.unique_name",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "unique_name",
+							"value": "RJlXbqiCD1duf",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/delete",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot renew",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"unique_name=\" + request.data.unique_name + \"&days=\" + request.data.days",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "unique_name",
+							"value": "FnW1qOvEIHJUb",
+							"type": "text"
+						},
+						{
+							"key": "days",
+							"value": "5",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/renew",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"renew"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot status toggle",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"unique_name=\" + request.data.unique_name",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "unique_name",
+							"value": "FnW1qOvEIHJUb",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/status/toggle",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"status",
+						"toggle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot trades list",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"unique_name=\" + request.data.unique_name",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "unique_name",
+							"value": "FnW1qOvEIHJUb",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/trades/list",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"trades",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot trades latest",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"unique_name=\" + request.data.unique_name",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "unique_name",
+							"value": "FnW1qOvEIHJUb",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/trades/latest",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"trades",
+						"latest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bot spot orders open",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"\"",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/bots/spot/orders/open",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"bots",
+						"spot",
+						"orders",
+						"open"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Account keys add",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"exchange=\" + request.data.exchange + \"&name=\" + request.data.name + \"&secret=\" + request.data.secret + \"&key=\" + request.data.key;",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "exchange",
+							"value": "binance",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "binance-teste-123",
+							"type": "text"
+						},
+						{
+							"key": "secret",
+							"value": "secret",
+							"type": "text"
+						},
+						{
+							"key": "key",
+							"value": "key",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/account/keys/add",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"account",
+						"keys",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Account keys remove",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"key_id=\" + request.data.key_id;",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "key_id",
+							"value": "20230626190121",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/account/keys/remove",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"account",
+						"keys",
+						"remove"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Account keys check",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"key_id=\" + request.data.key_id;",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "key_id",
+							"value": "20211006140459",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/account/keys/check",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"account",
+						"keys",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Account keys details",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"key_id=\" + request.data.key_id;",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "key_id",
+							"value": "20211006140459",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/account/keys/details",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"account",
+						"keys",
+						"details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Snapshots last",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"\";",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/snapshots/last",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"snapshots",
+						"last"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Snapshots list period",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"start=\" + request.data.start + \"&end=\" + request.data.end;",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "start",
+							"value": "20230626",
+							"type": "text"
+						},
+						{
+							"key": "end",
+							"value": "20230626",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/snapshots/list/period",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"snapshots",
+						"list",
+						"period"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Snapshots cost",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"exchange=\" + request.data.exchange + \"&currency=\" + request.data.currency; //+ \"&type=\" + request.data.type + \"&time=\" + request.data.time;",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "exchange",
+							"value": "binance",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "usdt",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "all",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "time",
+							"value": "last",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/snapshots/cost",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"snapshots",
+						"cost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Snapshots details",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"snapshot=\" + request.data.snapshot;",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "snapshot",
+							"value": "20230627000102",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/snapshots/details",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"snapshots",
+						"details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Snapshots new",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"exchange=\" + request.data.exchange + \"&currency=\" + request.data.currency + \"&time=\" + request.data.time + \"&_liquidity=\" + request.data._liquidity;",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "exchange",
+							"value": "binance",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "usdt",
+							"type": "text"
+						},
+						{
+							"key": "time",
+							"value": "30d",
+							"type": "text"
+						},
+						{
+							"key": "_liquidity",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/snapshots/new",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"snapshots",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Snapshots assets list",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"exchange=\" + request.data.exchange + \"&currency=\" + request.data.currency;",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "exchange",
+							"value": "binance",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "USDT",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/snapshots/assets",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"snapshots",
+						"assets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Watchlist assets",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"\";",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/watchlist/assets",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"watchlist",
+						"assets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Watchlist assets toggle",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"exchange=\" + request.data.exchange + \"&symbol=\" + request.data.symbol + \"&snapshot=\" + request.data.snapshot + \"&currency=\" + request.data.currency;",
+							"console.log(content_signature)",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "exchange",
+							"value": "binance",
+							"type": "text"
+						},
+						{
+							"key": "symbol",
+							"value": "1INCHUSDT",
+							"type": "text"
+						},
+						{
+							"key": "snapshot",
+							"value": "20230628000038",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "USDT",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/watchlist/assets/toggle",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"watchlist",
+						"assets",
+						"toggle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Watchlist assets renew",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"exchange=\" + request.data.exchange + \"&symbol=\" + request.data.symbol + \"&currency=\" + request.data.currency;",
+							"console.log(content_signature)",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "exchange",
+							"value": "binance",
+							"type": "text"
+						},
+						{
+							"key": "symbol",
+							"value": "1INCHUSDT",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "USDT",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/watchlist/assets/renew",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"watchlist",
+						"assets",
+						"renew"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Watchlist assets renew all",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"\"",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/watchlist/assets/renew/all",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"watchlist",
+						"assets",
+						"renew",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Watchlist assets details",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"exchange=\" + request.data.exchange + \"&symbol=\" + request.data.symbol;",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "exchange",
+							"value": "binance",
+							"type": "text"
+						},
+						{
+							"key": "symbol",
+							"value": "BTCUSDT",
+							"type": "text"
+						},
+						{
+							"key": "chart_data",
+							"value": "yes",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/watchlist/assets/details",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"watchlist",
+						"assets",
+						"details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Watchlist market targets",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"exchange=\" + request.data.exchange + \"&symbol=\" + request.data.symbol + \"&currency=\" + request.data.currency + \"&days=\" + request.data.days + \"&dateStart=\" + request.data.dateStart;",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "exchange",
+							"value": "binance",
+							"type": "text"
+						},
+						{
+							"key": "symbol",
+							"value": "BTCUSDT",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "USDT",
+							"type": "text"
+						},
+						{
+							"key": "days",
+							"value": "30",
+							"type": "text"
+						},
+						{
+							"key": "dateStart",
+							"value": "2023-05-26 22:30:00",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/watchlist/market/targets",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"watchlist",
+						"market",
+						"targets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Watchlist market info",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"exchange=\" + request.data.exchange + \"&symbol=\" + request.data.symbol + \"&currency=\" + request.data.currency;",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "exchange",
+							"value": "binance",
+							"type": "text"
+						},
+						{
+							"key": "symbol",
+							"value": "BTCUSDT",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "USDT",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/watchlist/market/info",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"watchlist",
+						"market",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Watchlist best by symbol",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"exchange=\" + request.data.exchange + \"&symbol=\" + request.data.symbol;",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "exchange",
+							"value": "binance",
+							"type": "text"
+						},
+						{
+							"key": "symbol",
+							"value": "BTCUSDT",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/watchlist/assets/best/symbol",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"watchlist",
+						"assets",
+						"best",
+						"symbol"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Watchlist best by snapshot",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"content_signature = \"exchange=\" + request.data.exchange + \"&symbol=\" + request.data.symbol + \"&snapshot=\" + request.data.snapshot;",
+							"postman.setEnvironmentVariable(\"hmac\", CryptoJS.HmacSHA256(content_signature, api_secret).toString(CryptoJS.digest));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-RTN-KEY",
+						"value": "{{api_key}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RTN-SIGNATURE",
+						"value": "{{hmac}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "exchange",
+							"value": "binance",
+							"type": "text"
+						},
+						{
+							"key": "symbol",
+							"value": "BTCUSDT",
+							"type": "text"
+						},
+						{
+							"key": "snapshot",
+							"value": "20230627040034",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/api/v2/watchlist/assets/best/snapshot",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v2",
+						"watchlist",
+						"assets",
+						"best",
+						"snapshot"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"api_secret = pm.collectionVariables.get(\"api_secret\")"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_key",
+			"value": "{reactioon-api-key}",
+			"type": "string"
+		},
+		{
+			"key": "api_secret",
+			"value": "{reactioon-api-secret}",
+			"type": "string"
+		},
+		{
+			"key": "host",
+			"value": "api.reactioon.com",
+			"type": "string"
+		},
+		{
+			"key": "port",
+			"value": "1357",
+			"type": "string"
+		}
+	]
+}
