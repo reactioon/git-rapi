@@ -228,4 +228,6 @@ There are many possibilities to do with reactioon.network, feel free to create y
 
 <br>
 
-@author José Wilker <josewilker@reactioon.com>
+That's all folks!
+
+José Wilker (CEO/Developer)

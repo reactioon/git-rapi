@@ -5,7 +5,7 @@ There are the full list of endpoints availabe to work with reactioon network.
 All endpoints for accounts is the way to interact with user account. Below have an list of endpoints with their fields.
 
 #### - Add API to account
-`(POST)` `{@base_url}`/account/keys/add  
+`(POST)` `{@base_url}`/api/v2/account/keys/add  
 
 | field    | Type    | Details |
 | -------- | ------- | ------- |
@@ -15,13 +15,13 @@ All endpoints for accounts is the way to interact with user account. Below have 
 | secret   | string  | Your API SECRET from exchange
 
 #### - Remove API Key from an account
-`(POST)` `{@base_url}`/account/keys/remove  
+`(POST)` `{@base_url}`/api/v2/account/keys/remove  
 
 #### - Check balance of an key
-`(POST)` `{@base_url}`/account/keys/check  
+`(POST)` `{@base_url}`/api/v2/account/keys/check  
 
 #### - Get details of an key
-`(POST)` `{@base_url}`/account/keys/details  
+`(POST)` `{@base_url}`/api/v2/account/keys/details  
 
 | Param    | Type    | Details |
 | -------- | ------- | ------- |
@@ -31,7 +31,7 @@ All endpoints for accounts is the way to interact with user account. Below have 
 All endpoints for snapshots provide an way to interact with snapshots of user. Below have an list of endpoints with their fields.
 
 #### - Calculate the cost of an snapshot
-`(POST)` `{@base_url}`/snapshots/cost  
+`(POST)` `{@base_url}`/api/v2/snapshots/cost  
 
 | Param    | Type    | Details |
 | -------- | ------- | ------- |
@@ -39,7 +39,7 @@ All endpoints for snapshots provide an way to interact with snapshots of user. B
 | currency | string  | Currency available (list availables).
 
 #### - Get new snapshot
-`(POST)` `{@base_url}`/snapshots/new  
+`(POST)` `{@base_url}`/api/v2/snapshots/new  
 
 | Param      | Type    | Details |
 | --------   | ------- | ------- |
@@ -49,14 +49,14 @@ All endpoints for snapshots provide an way to interact with snapshots of user. B
 | _liquidity | numeric | 1 = use your liquidity balance, 0 = don't use your liquidity.
 
 #### - Get snapshot details
-`(POST)` `{@base_url}`/snapshots/details  
+`(POST)` `{@base_url}`/api/v2/snapshots/details  
 
 | Param    | Type    | Details |
 | -------- | ------- | ------- |
 | snapshot | numeric | ID of snapshot, use snapshots_id as reference.
 
 #### - Get list of snapshots by period
-`(POST)` `{@base_url}`/snapshots/list/period  
+`(POST)` `{@base_url}`/api/v2/snapshots/list/period  
 
 | Param    | Type    | Details |
 | -------- | ------- | ------- |
@@ -64,10 +64,10 @@ All endpoints for snapshots provide an way to interact with snapshots of user. B
 | end      | date    | Date to end. (Ex: 20230626)
 
 #### - Get last snapshot added in account
-`(GET)` `{@base_url}`/snapshots/last  
+`(GET)` `{@base_url}`/api/v2/snapshots/last  
 
 #### - Get all assets inside of an snapshot
-`(POST)` `{@base_url}`/snapshots/assets 
+`(POST)` `{@base_url}`/api/v2/snapshots/assets 
 
 | Param    | Type    | Details |
 | -------- | ------- | ------- |
@@ -78,10 +78,10 @@ All endpoints for snapshots provide an way to interact with snapshots of user. B
 All endpoints for watchlist provied an way to interact with assets added on user account to watch. Below have an list of endpoints with their fields.
 
 #### - Get all assets added on watchlist
-`(GET)` `{@base_url}`/watchlist/assets  
+`(GET)` `{@base_url}`/api/v2/watchlist/assets  
 
 #### - Toggle assets on watchlist
-`(POST)` `{@base_url}`/watchlist/assets/toggle  
+`(POST)` `{@base_url}`/api/v2/watchlist/assets/toggle  
 
 | Param      | Type    | Details |
 | --------   | ------- | ------- |
@@ -91,7 +91,7 @@ All endpoints for watchlist provied an way to interact with assets added on user
 | snapshot   | numeric | ID of snapshot, use snapshots_id as reference.
 
 #### - Get details of an asset
-`(POST)` `{@base_url}`/watchlist/assets/details  
+`(POST)` `{@base_url}`/api/v2/watchlist/assets/details  
 
 | Param    | Type    | Details |
 | -------- | ------- | ------- |
@@ -99,10 +99,10 @@ All endpoints for watchlist provied an way to interact with assets added on user
 | symbol   | string  | Asset symbol of your watchlist
 
 #### - Remove all assets inside of watchlist
-`(POST)` ? `{@base_url}`/watchlist/assets/remove/all  
+`(POST)` ? `{@base_url}`/api/v2/watchlist/assets/remove/all  
 
 #### - Renew an asset to get last snapshot
-`(POST)` `{@base_url}`/watchlist/assets/renew  
+`(POST)` `{@base_url}`/api/v2/watchlist/assets/renew  
 
 | Param      | Type    | Details |
 | --------   | ------- | ------- |
@@ -111,12 +111,12 @@ All endpoints for watchlist provied an way to interact with assets added on user
 | symbol     | string  | Asset symbol of an snapshot
 
 #### - Renew all assets of watchlist
-`(POST)` `{@base_url}`/watchlist/assets/renew/all  
+`(POST)` `{@base_url}`/api/v2/watchlist/assets/renew/all  
 
 Note: no arguments, on this request, there are an POST request without any argument.
 
 #### - Get all assets listed on best using an symbol as reference
-`(POST)` `{@base_url}`/watchlist/assets/best/symbol  
+`(POST)` `{@base_url}`/api/v2/watchlist/assets/best/symbol  
 
 | Param    | Type    | Details |
 | -------- | ------- | ------- |
@@ -124,7 +124,7 @@ Note: no arguments, on this request, there are an POST request without any argum
 | symbol   | string  | Asset symbol of your watchlist
 
 #### - Get all assets listed on best using an snapshot as reference
-`(POST)` `{@base_url}`/watchlist/assets/best/snapshot  
+`(POST)` `{@base_url}`/api/v2/watchlist/assets/best/snapshot  
 
 | Param    | Type    | Details |
 | -------- | ------- | ------- |
@@ -133,7 +133,7 @@ Note: no arguments, on this request, there are an POST request without any argum
 | snapshot | string  | ID of snapshot, use snapshots_id as reference.
 
 #### - Get market info about an asset inside of watchlist
-`(POST)` `{@base_url}`/watchlist/market/info  
+`(POST)` `{@base_url}`/api/v2/watchlist/market/info  
 
 | Param      | Type    | Details |
 | --------   | ------- | ------- |
@@ -142,7 +142,7 @@ Note: no arguments, on this request, there are an POST request without any argum
 | symbol     | string  | Asset symbol of an snapshot
 
 #### - Get market targets to an asset
-`(POST)` `{@base_url}`/watchlist/market/targets
+`(POST)` `{@base_url}`/api/v2/watchlist/market/targets
 
 | Param      | Type     | Details |
 | --------   | -------- | ------- |
@@ -159,10 +159,10 @@ All endpoints here provide an way to interact with bots. Below have an list of e
 (1): After create/edit/remove an bot, the changes needs to be uploaded to network. 
 
 #### - Get all bots
-`(GET)` `{@base_url}`/bots/spot/all  
+`(GET)` `{@base_url}`/api/v2/bots/spot/all  
 
 #### - Calculate the cost an bot
-`(POST)` `{@base_url}`/bots/spot/cost  
+`(POST)` `{@base_url}`/api/v2/bots/spot/cost  
 
 | Param      | Type     | Details |
 | --------   | -------- | ------- |
@@ -173,7 +173,7 @@ All endpoints here provide an way to interact with bots. Below have an list of e
 | symbol     | string   | Asset symbol
 
 #### - Create new bot
-`(POST)` `{@base_url}`/bots/spot/create  
+`(POST)` `{@base_url}`/api/v2/bots/spot/create  
 
 | Param               | Type               | Details |
 | --------            | --------           | ------- |
@@ -200,7 +200,7 @@ All endpoints here provide an way to interact with bots. Below have an list of e
 | _confirmed          | numeric            | Flag to confirm the whole data.
 
 #### - Edit bot
-`(POST)` `{@base_url}`/bots/spot/edit  
+`(POST)` `{@base_url}`/api/v2/bots/spot/edit  
 
 
 | Param               | Type               | Details |
@@ -228,14 +228,14 @@ All endpoints here provide an way to interact with bots. Below have an list of e
 | edit                | numeric            | Flag to confirm the whole data.
 
 #### - Delete an bot
-`(POST)` `{@base_url}`/bots/spot/delete  
+`(POST)` `{@base_url}`/api/v2/bots/spot/delete  
 
 | Param               | Type               | Details |
 | --------            | --------           | ------- |
 | unique_name         | text               | The Unique Name generated to your bot.
 
 #### - Renew bot period
-`(POST)` `{@base_url}`/bots/spot/renew  
+`(POST)` `{@base_url}`/api/v2/bots/spot/renew  
 
 | Param               | Type               | Details |
 | --------            | --------           | ------- |
@@ -243,36 +243,36 @@ All endpoints here provide an way to interact with bots. Below have an list of e
 | days                | integer            | Total days to renew
 
 #### - Toggle status 
-`(POST)` `{@base_url}`/bots/spot/status/toggle  
+`(POST)` `{@base_url}`/api/v2/bots/spot/status/toggle  
 
 | Param               | Type               | Details |
 | --------            | --------           | ------- |
 | unique_name         | text               | The Unique Name generated to your bot.
 
 #### - Disable action
-`(POST)` `{@base_url}`/bots/spot/buy/disable  
-`(POST)` `{@base_url}`/bots/spot/sell/disable  
-`(POST)` `{@base_url}`/bots/spot/cancel/disable  
-`(POST)` `{@base_url}`/bots/spot/stoploss/disable  
-`(POST)` `{@base_url}`/bots/spot/workprice/disable  
-`(POST)` `{@base_url}`/bots/spot/fastactions/disable  
+`(POST)` `{@base_url}`/api/v2/bots/spot/buy/disable  
+`(POST)` `{@base_url}`/api/v2/bots/spot/sell/disable  
+`(POST)` `{@base_url}`/api/v2/bots/spot/cancel/disable  
+`(POST)` `{@base_url}`/api/v2/bots/spot/stoploss/disable  
+`(POST)` `{@base_url}`/api/v2/bots/spot/workprice/disable  
+`(POST)` `{@base_url}`/api/v2/bots/spot/fastactions/disable  
 
 | Param               | Type               | Details |
 | --------            | --------           | ------- |
 | unique_name         | text               | The Unique Name generated to your bot.
 
 #### - Enable action
-`(POST)` `{@base_url}`/bots/spot/buy/enable  
-`(POST)` `{@base_url}`/bots/spot/sell/enable  
-`(POST)` `{@base_url}`/bots/spot/cancel/enable  
-`(POST)` `{@base_url}`/bots/spot/fastactions/enable  
+`(POST)` `{@base_url}`/api/v2/bots/spot/buy/enable  
+`(POST)` `{@base_url}`/api/v2/bots/spot/sell/enable  
+`(POST)` `{@base_url}`/api/v2/bots/spot/cancel/enable  
+`(POST)` `{@base_url}`/api/v2/bots/spot/fastactions/enable  
 
 | Param               | Type               | Details |
 | --------            | --------           | ------- |
 | unique_name         | text               | The Unique Name generated to your bot.
 
 #### - Set properties of action buy
-`(POST)` `{@base_url}`/bots/spot/buy/set  
+`(POST)` `{@base_url}`/api/v2/bots/spot/buy/set  
 
 | Param               | Type                  | Details |
 | --------            | --------              | ------- |
@@ -281,7 +281,7 @@ All endpoints here provide an way to interact with bots. Below have an list of e
 | position            | integer               | Position in book that will open an order.
 
 #### - Set properties of action sell
-`(POST)` `{@base_url}`/bots/spot/sell/set  
+`(POST)` `{@base_url}`/api/v2/bots/spot/sell/set  
 
 | Param               | Type                  | Details |
 | --------            | --------              | ------- |
@@ -291,7 +291,7 @@ All endpoints here provide an way to interact with bots. Below have an list of e
 | profit              | decimal               | The target aimed to sell an order.
 
 #### - Set properties of action cancel
-`(POST)` `{@base_url}`/bots/spot/cancel/set  
+`(POST)` `{@base_url}`/api/v2/bots/spot/cancel/set  
 
 | Param               | Type                  | Details |
 | --------            | --------              | ------- |
@@ -300,7 +300,7 @@ All endpoints here provide an way to interact with bots. Below have an list of e
 | sell                | integer               | Amount of time in minutes toc ancel an order open om sell side.
 
 #### - Set properties of action 'stop-loss'
-`(POST)` `{@base_url}`/bots/spot/stoploss/set  
+`(POST)` `{@base_url}`/api/v2/bots/spot/stoploss/set  
 
 | Param               | Type                  | Details |
 | --------            | --------              | ------- |
@@ -308,7 +308,7 @@ All endpoints here provide an way to interact with bots. Below have an list of e
 | stoploss            | integer               | The target aimed to stop an order. This will enable sell an order if the entry reach more than the target in %. (ex: 10)
 
 #### - Set properties of action 'work-price'
-`(POST)` `{@base_url}`/bots/spot/workprice/set  
+`(POST)` `{@base_url}`/api/v2/bots/spot/workprice/set  
 
 | Param               | Type                  | Details |
 | --------            | --------              | ------- |
@@ -319,26 +319,26 @@ All endpoints here provide an way to interact with bots. Below have an list of e
 | sell_end            | decimal               | The price to disable the sell.
 
 #### - Get trades list of an bot
-`(POST)` `{@base_url}`/bots/spot/trades/list  
+`(POST)` `{@base_url}`/api/v2/bots/spot/trades/list  
 
 | Param               | Type               | Details |
 | --------            | --------           | ------- |
 | unique_name         | text               | The Unique Name generated to your bot.
 
 #### - Get latest trades of an bot
-`(POST)` `{@base_url}`/bots/spot/trades/latest  
+`(POST)` `{@base_url}`/api/v2/bots/spot/trades/latest  
 
 | Param               | Type               | Details |
 | --------            | --------           | ------- |
 | unique_name         | text               | The Unique Name generated to your bot.
 
 #### - Get all orders open
-`(POST)` `{@base_url}`/bots/spot/orders/open  
+`(POST)` `{@base_url}`/api/v2/bots/spot/orders/open  
 
 @Note: There are no arguments to the endpoint. So, this endpoint will return orders open of all bots.
 
 #### - Get last trade
-`(POST)` `{@base_url}`/bots/spot/stats/trade/last  
+`(POST)` `{@base_url}`/api/v2/bots/spot/stats/trade/last  
 
 | Param               | Type               | Details |
 | --------            | --------           | ------- |
@@ -346,7 +346,7 @@ All endpoints here provide an way to interact with bots. Below have an list of e
 | symbol              | string             | Asset symbol
 
 #### - Upload update
-`(POST)` `{@base_url}`/bots/spot/upload/update  
+`(POST)` `{@base_url}`/api/v2/bots/spot/upload/update  
 
 | Param               | Type               | Details |
 | --------            | --------           | ------- |
