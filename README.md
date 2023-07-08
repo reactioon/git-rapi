@@ -176,7 +176,7 @@ You can get more details about the library for PHP inside of their repository, [
 
 * Python
 
-The Python library was created by [@lpereira](https://github.com/lpereira199312), see the usage details below.
+The Python library was created by [@lpereira199312](https://github.com/lpereira199312), see the usage details below.
 
 ```python
 import rapi
@@ -231,7 +231,7 @@ With the reactioon API it is possible to collect targets and store them to carry
 Reactioon is distributed tool created by people for people, and many users help the project to maintain a constant evolution. See below the list of people who contribute to the development of the API.
 
 * [@josewilker](https://github.com/josewilker)
-* [@lpereira](https://github.com/lpereira199312)
+* [@lpereira199312](https://github.com/lpereira199312)
 
 ### Versions
 
