@@ -86,6 +86,8 @@ Reactioon has some libraries to help developers when creating solutions, see the
 
 * Go
 
+The Go library was created by [@josewilker](https://github.com/josewilker), see the usage details below.
+
 ```go
 package main
 
@@ -125,9 +127,11 @@ func main() {
 }
 ```
 
-You can get more details about the library for Go inside of their repository, here.
+You can get more details about the library for Go inside of their repository, [here](https://github.com/reactioon/rgo-rapi-lib-go).
 
 * NodeJS
+
+The NodeJS library was created by [@josewilker](https://github.com/josewilker), see the usage details below.
 
 ```js
 async function Init() {
@@ -149,9 +153,11 @@ async function Init() {
 Init()
 ```
 
-You can get more details about the library for NodeJS inside of their repository, here.
+You can get more details about the library for NodeJS inside of their repository, [here](https://github.com/reactioon/rgo-rapi-lib-nodejs).
 
 * PHP
+
+The PHP library was created by [@josewilker](https://github.com/josewilker), see the usage details below.
 
 ```php
 <?php
@@ -166,14 +172,39 @@ var_dump($requestReturn);
 ?>
 ```
 
-You can get more details about the library for PHP inside of their repository, here.
+You can get more details about the library for PHP inside of their repository, [here](https://github.com/reactioon/rgo-rapi-lib-php).
+
+* Python
+
+The Python library was created by [@lpereira](https://github.com/lpereira199312), see the usage details below.
+
+```python
+import rapi
+
+apikey={your-api-key}
+secretkey={your-secret-key}
+
+# metodo post get price for get snapshot in exchange binance for currency usdt 
+
+rapi.keys(apikey,secretkey)
+r = rapi.request("POST","/api/v2/snapshots/cost",{'exchange':'binance','currency':'USDT'})
+print(r.text)
+
+# metodo get get assets in your watchlist
+
+rapi.keys(apikey,secretkey)
+r =rapi.request("GET","/api/v2/watchlist/assets","")
+print(r.text)
+```
+
+You can get more details about the library for Python inside of their repository, [here](https://github.com/reactioon/rgo-rapi-lib-python).
 
 ## Postman
 
 To speed up the process of learning about the RAPI, you can download the postman collection and install it on your machine. Put your key & secret in variables, and it's ready.
 
-* Download Postman
-* Download RAPI Collection
+* [Download Postman](https://postman.com)
+* [Download RAPI Collection](https://raw.githubusercontent.com/reactioon/rgo-rapi/master/postman_collection.json)
 
 With more than 40 endpoints on collection about Reactioon Network, you can explore anything. See some examples of applications below.
 
@@ -195,6 +226,12 @@ A chat bot to inform which are the best assets to invest, this can save time whe
 
 * **Backtest**  
 With the reactioon API it is possible to collect targets and store them to carry out different activities in many contexts.
+
+### Contributors
+Reactioon is distributed tool created by people for people, and many users help the project to maintain a constant evolution. See below the list of people who contribute to the development of the API.
+
+* [@josewilker](https://github.com/josewilker)
+* [@lpereira](https://github.com/lpereira199312)
 
 ### Versions
 
